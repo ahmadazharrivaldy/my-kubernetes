@@ -1,6 +1,6 @@
 # Setup Kubernetes Cluster using Cilium & Containerd
 
-## Environmet
+## Environment
 | Role | Host | IP | OS | RAM | CPU |
 | ------ | ------ | ------ | ------ | ------ | ------ |
 | Master | rz-master | 10.0.10.10 | Ubuntu 20.04 | 4GB | 4 |
