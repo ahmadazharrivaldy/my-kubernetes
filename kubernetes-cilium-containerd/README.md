@@ -90,7 +90,7 @@ source <(helm completion bash)
 alias k=kubectl
 complete -F __start_kubectl k
 
-## change kube editor using nano ##
+## replace kube editor using nano ##
 export KUBE_EDITOR=nano
 export NOW="--force --grace-period 0"
 EOF
@@ -118,6 +118,7 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
 Deploy Cilium Container Network Interface
+> replace k8sServiceHost: 10.0.10.10 with your master node ip address
 ```
 {
 helm repo add cilium https://helm.cilium.io/
