@@ -119,9 +119,6 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 
 Deploy Cilium Container Network Interface
 ```
-YOUR_IP_ADDRESS=10.0.10.10
-```
-```
 {
 helm repo add cilium https://helm.cilium.io/
 helm install -n kube-system cilium cilium/cilium -f ~/cilium-values.yaml
