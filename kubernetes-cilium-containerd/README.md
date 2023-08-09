@@ -101,9 +101,6 @@ source ~/.profile
 ## On master node
 Initialize kubernetes cluster
 ```
-YOUR_IP_ADDRESS=10.0.10.10
-```
-```
 kubeadm init \
 --control-plane-endpoint=10.0.10.10:6443 \
 --upload-certs \
@@ -121,6 +118,9 @@ sudo chown $(id -u):$(id -g) $HOME/.kube/config
 ```
 
 Deploy Cilium Container Network Interface
+```
+YOUR_IP_ADDRESS=10.0.10.10
+```
 ```
 {
 helm repo add cilium https://helm.cilium.io/
