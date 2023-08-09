@@ -1,0 +1,39 @@
+k8sServiceHost: YOUR_IP_ADDRESS
+k8sServicePort: 6443
+ipam:
+  mode: kubernetes
+kubeProxyReplacement: strict
+bpf:
+  hostLegacyRouting: false
+  masquerade: true
+bandwidthManager:
+  enabled: true
+externalIPs:
+  enabled: true
+tunnel: vxlan
+hubble:
+  enabled: true
+  relay:
+    enabled: true
+  ui:
+    enabled: true
+  metrics:
+    enabled: 
+    - dns:query;ignoreAAAA
+    - drop:labelsContext=source_ip,source_namespace,source_pod,source_workload,source_app,destination_ip,destination_namespace,destination_pod,destination_workload,destination_app,traffic_direction
+    - flow:labelsContext=source_ip,source_namespace,source_pod,source_workload,source_app,destination_ip,destination_namespace,destination_pod,destination_workload,destination_app,traffic_direction
+    - flows-to-world:labelsContext=source_ip,source_namespace,source_pod,source_workload,source_app,traffic_direction,destination_ip
+    - httpV2:exemplars=true;labelsContext=source_ip,source_namespace,source_pod,source_workload,source_app,destination_ip,destination_namespace,destination_pod,destination_workload,destination_app,traffic_direction
+    - icmp:labelsContext=source_ip,source_namespace,source_pod,source_workload,source_app,destination_ip,destination_namespace,destination_pod,destination_workload,destination_app,traffic_direction
+    - port-distribution:labelsContext=source_ip,source_namespace,source_pod,source_workload,source_app,destination_ip,destination_namespace,destination_pod,destination_workload,destination_app,traffic_direction
+    - tcp:labelsContext=source_ip,source_namespace,source_pod,source_workload,source_app,destination_ip,destination_namespace,destination_pod,destination_workload,destination_app,traffic_direction
+    enableOpenMetrics: true
+prometheus:
+  enabled: true
+  port: 9964
+proxy:
+  prometheus:
+    enabled: false
+operator:
+  prometheus:
+    enabled: true
