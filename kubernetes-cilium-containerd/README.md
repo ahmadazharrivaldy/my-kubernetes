@@ -43,10 +43,10 @@ sysctl --system
 Add kubernetes & containerd repository
 ```
 {
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | apt-key add -
-echo "deb https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | tee /etc/apt/sources.list.d/docker.list
-echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | tee /etc/apt/sources.list.d/kubernetes.list
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+curl -s https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+echo "deb https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list
+echo "deb https://apt.kubernetes.io/ kubernetes-xenial main" | sudo tee /etc/apt/sources.list.d/kubernetes.list
 }
 ```
 Install kubernetes, containerd, helm-3 packages
@@ -60,7 +60,7 @@ curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | sudo 
 Configure containerd
 ```
 {
-containerd config default | tee /etc/containerd/config.toml
+containerd config default | sudo tee /etc/containerd/config.toml
 cat /etc/containerd/config.toml | grep SystemdCgroup
 sed -i 's/SystemdCgroup = false/SystemdCgroup = true/g' /etc/containerd/config.toml
 cat /etc/containerd/config.toml | grep SystemdCgroup
@@ -74,7 +74,7 @@ image-endpoint: unix:///var/run/containerd/containerd.sock
 timeout: 30
 debug: false
 EOF
-systemctl restart containerd 
+sudo systemctl restart containerd 
 }
 ```
 Add bash auto completion
