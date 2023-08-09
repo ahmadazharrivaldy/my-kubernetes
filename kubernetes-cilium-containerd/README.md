@@ -110,16 +110,19 @@ kubeadm init \
 ```
 Create kubeconfig so you can operate kubectl command
 ```
+{
 mkdir -p $HOME/.kube
 sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
 sudo chown $(id -u):$(id -g) $HOME/.kube/config
+}
 ```
 
 Deploy Cilium Container Network Interface
 ```
+{
 helm repo add cilium https://helm.cilium.io/
-helm install -n kube-system cilium cilium/cilium \
--f ~/cilium-values.yaml
+helm install -n kube-system cilium cilium/cilium -f ~/cilium-values.yaml
+}
 ```
 Generate join command for worker nodes
 ```
